@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>MD Sazzad Hossain | Mathematics | Marketing | Teaching</title>
+  <!-- Google Fonts + Tailwind + Font Awesome + AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Reset & Base - Fixed margin/padding issues */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background-color: #f8fafc;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+    /* Fix for section spacing consistency */
+    section {
+      scroll-margin-top: 80px;
+    }
+    /* Glassmorphism effects */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 2rem;
+      transition: all 0.3s ease;
+    }
+    .glass-card-dark {
+      background: rgba(15, 25, 45, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+    }
+    /* Gradient border for cards */
+    .gradient-border {
+      position: relative;
+      background: white;
+      border-radius: 1.5rem;
+    }
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(135deg, #3b82f6, #a855f7, #f97316);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    /* Progress bar animation */
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      border-radius: 30px;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    /* Typing cursor effect */
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      background-color: #3b82f6;
+      animation: blink 0.7s infinite;
+      margin-left: 4px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    /* Floating animation for math symbols */
+    .floating-math {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e2e8f0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #3b82f6, #9333ea);
+      border-radius: 10px;
+    }
+    /* Fix for button and link consistency */
+    a, button {
+      transition: all 0.2s ease;
+    }
+    /* WhatsApp button - perfectly round fix */
+    .whatsapp-float {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50% !important;
+      background-color: #25D366;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #128C7E;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+    }
+    .whatsapp-float i {
+      font-size: 32px;
+      color: white;
+    }
+    /* Ensure proper container spacing on mobile */
+    @media (max-width: 640px) {
+      .px-6 {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .py-24 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+      h2.text-4xl {
+        font-size: 1.875rem;
+      }
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .whatsapp-float i {
+        font-size: 26px;
+      }
+    }
+    /* Hero image positioning fix */
+    .hero-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    @media (min-width: 1024px) {
+      .hero-image-container {
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased scroll-smooth">
+
+  <!-- FLOATING NAVBAR (icon based) - Fixed z-index and positioning -->
+  <nav class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 bg-white/90 backdrop-blur-xl rounded-full shadow-2xl px-5 py-3 flex gap-6 border border-white/30">
+    <a href="#home" class="text-gray-700 hover:text-blue-600 transition text-xl"><i class="fas fa-home"></i></a>
+    <a href="#about" class="text-gray-700 hover:text-blue-600 transition text-xl"><i class="fas fa-user"></i></a>
+    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition text-xl"><i class="fas fa-code"></i></a>
+    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition text-xl"><i class="fas fa-folder-open"></i></a>
+    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition text-xl"><i class="fas fa-envelope"></i></a>
+  </nav>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div class="fixed top-0 left-0 w-full h-1 bg-blue-200 z-50">
+    <div class="h-full bg-gradient-to-r from-blue-600 to-purple-600 w-0" id="scrollProgress"></div>
+  </div>
+
+  <!-- HERO SECTION (Deep Blue + Cyan) - Image on top for mobile, side by side for desktop -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#0f2b4d] to-[#0b3b5f] px-6 pt-24 pb-16">
+    <!-- floating math symbols background -->
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+      <div class="absolute top-20 left-10 text-4xl floating-math">∫</div>
+      <div class="absolute bottom-32 right-12 text-5xl floating-math" style="animation-delay:1s">π</div>
+      <div class="absolute top-1/3 right-[15%] text-3xl floating-math" style="animation-delay:2s">√</div>
+      <div class="absolute bottom-1/4 left-[8%] text-4xl floating-math" style="animation-delay:0.5s">∑</div>
+      <div class="absolute top-[70%] left-[20%] text-3xl floating-math" style="animation-delay:1.8s">α</div>
+    </div>
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <!-- Left side content - appears first on mobile -->
+      <div data-aos="fade-right" class="order-2 lg:order-1">
+        <span class="text-cyan-300 font-medium tracking-wide text-sm uppercase bg-white/10 px-4 py-1 rounded-full">Welcome to my universe</span>
+        <h1 class="text-5xl md:text-7xl font-bold text-white mt-6">MD Sazzad <span class="text-cyan-400">Hossain</span></h1>
+        <div class="flex items-center gap-2 text-xl md:text-3xl font-semibold text-gray-200 mt-4">
+          <span><i class="fas fa-brain text-cyan-400"></i> </span>
+          <span id="typing-text" class="min-w-[220px]"></span>
+          <span class="typing-cursor"></span>
+        </div>
+        <p class="text-gray-300 text-lg max-w-md mt-6 leading-relaxed">Passionate about education, marketing, creativity, and professional growth.</p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="#contact" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition-transform flex items-center gap-2"><i class="fas fa-download"></i> Download CV</a>
+          <a href="#contact" class="border border-white/40 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all"><i class="fas fa-paper-plane"></i> Hire Me</a>
+          <a href="#contact" class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full font-semibold hover:bg-white/30 transition"><i class="fas fa-comment-alt"></i> Contact</a>
+        </div>
+        <div class="flex gap-6 mt-12 text-2xl text-white/80">
+          <a href="https://www.facebook.com/LBS.Sazzad" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
+          <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <!-- Right side image - appears on top on mobile -->
+      <div data-aos="fade-left" class="relative flex justify-center lg:justify-end order-1 lg:order-2 hero-image-container">
+        <div class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-700 p-1 shadow-2xl">
+          <div class="w-full h-full rounded-full bg-[#0a192f] overflow-hidden flex items-center justify-center">
+            <img src="https://ui-avatars.com/api/?background=0a192f&color=00e5ff&bold=true&size=400&name=MD+Sazzad+Hossain&length=2&fontsize=0.33" alt="MD Sazzad Hossain" class="object-cover w-full h-full rounded-full">
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-cyan-500/30 rounded-full blur-3xl"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION (White + Light Gray) - Fixed margin/padding -->
+  <section id="about" class="py-20 md:py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-up" class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://placehold.co/600x500/f1f5f9/1e293b?text=Teaching+Passion" alt="Profile" class="w-full object-cover">
+          </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-4xl font-bold text-gray-800">About <span class="text-blue-600">Me</span></h2>
+          <div class="w-20 h-1 bg-blue-600 mt-2 mb-6"></div>
+          <p class="text-gray-600 leading-relaxed">Mathematics student, marketing enthusiast, and dedicated teacher. I blend analytical thinking with creative strategies to inspire students and drive results. Currently pursuing B.Sc in Mathematics at National University, I've helped over 100+ students excel in both math and english.</p>
+          <div class="grid grid-cols-2 gap-5 mt-8">
+            <div class="bg-gray-50 p-4 rounded-2xl"><i class="fas fa-chalkboard-user text-blue-600 text-2xl"></i><p class="font-bold text-xl mt-1 counter" data-target="4">0</p><p>Years Teaching</p></div>
+            <div class="bg-gray-50 p-4 rounded-2xl"><i class="fas fa-chart-line text-blue-600 text-2xl"></i><p class="font-bold text-xl mt-1 counter" data-target="2">0</p><p>+ Years Marketing</p></div>
+            <div class="bg-gray-50 p-4 rounded-2xl"><i class="fas fa-folder-open text-blue-600 text-2xl"></i><p class="font-bold text-xl mt-1 counter" data-target="15">0</p><p>+ Projects</p></div>
+            <div class="bg-gray-50 p-4 rounded-2xl"><i class="fas fa-users text-blue-600 text-2xl"></i><p class="font-bold text-xl mt-1 counter" data-target="120">0</p><p>Students Mentored</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION (Purple Gradient) -->
+  <section id="skills" class="py-20 md:py-24 px-6 bg-gradient-to-br from-purple-50 to-indigo-100">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center" data-aos="fade-up"><h2 class="text-4xl font-bold text-gray-800">My <span class="text-purple-700">Skills</span></h2><div class="w-24 h-1 bg-purple-600 mx-auto mt-3 mb-12"></div></div>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div data-aos="fade-right"><h3 class="text-2xl font-semibold mb-6"><i class="fas fa-laptop-code text-purple-600"></i> Technical Skills</h3>
+          <div class="space-y-5">
+            <div><div class="flex justify-between"><span>Microsoft Office</span><span class="skill-percent">0%</span></div><div class="w-full bg-gray-300 rounded-full h-2.5"><div class="progress-bar-fill h-2.5 rounded-full" data-skill="95" style="width:0%"></div></div></div>
+            <div><div class="flex justify-between"><span>Email Communication</span><span class="skill-percent">0%</span></div><div class="w-full bg-gray-300 rounded-full h-2.5"><div class="progress-bar-fill h-2.5 rounded-full" data-skill="90" style="width:0%"></div></div></div>
+            <div><div class="flex justify-between"><span>Marketing</span><span class="skill-percent">0%</span></div><div class="w-full bg-gray-300 rounded-full h-2.5"><div class="progress-bar-fill h-2.5 rounded-full" data-skill="88" style="width:0%"></div></div></div>
+            <div><div class="flex justify-between"><span>Mathematics Teaching</span><span class="skill-percent">0%</span></div><div class="w-full bg-gray-300 rounded-full h-2.5"><div class="progress-bar-fill h-2.5 rounded-full" data-skill="96" style="width:0%"></div></div></div>
+            <div><div class="flex justify-between"><span>English Communication</span><span class="skill-percent">0%</span></div><div class="w-full bg-gray-300 rounded-full h-2.5"><div class="progress-bar-fill h-2.5 rounded-full" data-skill="87" style="width:0%"></div></div></div>
+          </div>
+        </div>
+        <div data-aos="fade-left"><h3 class="text-2xl font-semibold mb-6"><i class="fas fa-heart text-purple-600"></i> Soft Skills</h3>
+          <div class="grid grid-cols-2 gap-4"><div class="bg-white/50 p-4 rounded-2xl text-center"><i class="fas fa-users text-3xl text-purple-600"></i><p class="font-bold mt-2">Leadership</p></div><div class="bg-white/50 p-4 rounded-2xl text-center"><i class="fas fa-lightbulb text-3xl text-purple-600"></i><p class="font-bold mt-2">Creativity</p></div><div class="bg-white/50 p-4 rounded-2xl text-center"><i class="fas fa-comments text-3xl text-purple-600"></i><p class="font-bold mt-2">Communication</p></div><div class="bg-white/50 p-4 rounded-2xl text-center"><i class="fas fa-puzzle-piece text-3xl text-purple-600"></i><p class="font-bold mt-2">Problem Solving</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION TIMELINE (Dark Navy) -->
+  <section id="education" class="py-20 md:py-24 px-6 bg-slate-900 text-white">
+    <div class="max-w-5xl mx-auto"><h2 class="text-4xl font-bold text-center">Education <span class="text-cyan-400">Journey</span></h2><div class="w-24 h-1 bg-cyan-500 mx-auto mt-3 mb-16"></div>
+      <div class="relative border-l-4 border-cyan-400 ml-6 space-y-12"> 
+        <div data-aos="fade-up" class="relative pl-8"><div class="absolute -left-4 top-0 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center"><i class="fas fa-graduation-cap"></i></div><h3 class="text-2xl font-bold">B.Sc in Mathematics</h3><p class="text-cyan-300">National University | Chandpur Govt. College</p><p class="text-gray-300">Running (3rd Year) • Present</p></div>
+        <div data-aos="fade-up" data-aos-delay="100" class="relative pl-8"><div class="absolute -left-4 top-0 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center"><i class="fas fa-school"></i></div><h3 class="text-2xl font-bold">Higher Secondary (HSC)</h3><p class="text-cyan-300">Science | GPA 4.83</p></div>
+        <div data-aos="fade-up" data-aos-delay="200" class="relative pl-8"><div class="absolute -left-4 top-0 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center"><i class="fas fa-book"></i></div><h3 class="text-2xl font-bold">Secondary (SSC)</h3><p class="text-cyan-300">Science | GPA 4.72</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES section (Orange Gradient) -->
+  <section id="services" class="py-20 md:py-24 px-6 bg-gradient-to-r from-orange-50 to-amber-50">
+    <div class="max-w-7xl mx-auto"><h2 class="text-4xl font-bold text-center text-gray-800">What I <span class="text-orange-600">Offer</span></h2><div class="w-24 h-1 bg-orange-500 mx-auto mt-3 mb-12"></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"> 
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-chalkboard-teacher"></i></div><h3 class="text-2xl font-bold mt-4">Math Teaching</h3><p class="text-gray-600">Expert guidance in algebra, calculus, geometry for school/college students.</p></div>
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-language"></i></div><h3 class="text-2xl font-bold mt-4">English Teaching</h3><p class="text-gray-600">Grammar, spoken english & academic writing sessions.</p></div>
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-bullhorn"></i></div><h3 class="text-2xl font-bold mt-4">Marketing Support</h3><p class="text-gray-600">Offline campaigns, basic digital marketing & brand strategy.</p></div>
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-file-excel"></i></div><h3 class="text-2xl font-bold mt-4">Office Training</h3><p class="text-gray-600">MS Office, email management, office productivity tools.</p></div>
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-graduation-cap"></i></div><h3 class="text-2xl font-bold mt-4">Academic Guidance</h3><p class="text-gray-600">Career counseling & study techniques.</p></div>
+        <div data-aos="zoom-in" class="bg-white p-6 rounded-3xl shadow-xl hover-lift text-center"><div class="text-5xl text-orange-500"><i class="fas fa-comments"></i></div><h3 class="text-2xl font-bold mt-4">Comm. Training</h3><p class="text-gray-600">Soft skills & communication enhancement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (Green+Black) -->
+  <section id="projects" class="py-20 md:py-24 px-6 bg-black text-white">
+    <div class="max-w-7xl mx-auto"><h2 class="text-4xl font-bold text-center text-white">Recent <span class="text-green-400">Projects</span></h2><div class="w-24 h-1 bg-green-500 mx-auto mt-3 mb-12"></div>
+      <div class="grid md:grid-cols-3 gap-8"> 
+        <div data-aos="flip-left" class="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover-lift"><img src="https://placehold.co/400x250/2d2d2d/lightgreen?text=Math+Notes" alt="math notes" class="w-full"><div class="p-5"><h3 class="text-xl font-bold">Math Notes Library</h3><p class="text-gray-400">Comprehensive digital notes for calculus and algebra.</p><button class="mt-4 text-green-400 bg-transparent">Live Preview →</button></div></div>
+        <div data-aos="flip-left" data-aos-delay="100" class="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover-lift"><img src="https://placehold.co/400x250/2d2d2d/lightgreen?text=Teaching+Program" alt="teaching" class="w-full"><div class="p-5"><h3 class="text-xl font-bold">Coaching Program</h3><p class="text-gray-400">Structured math & english curriculum for high school.</p><button class="mt-4 text-green-400 bg-transparent">Details →</button></div></div>
+        <div data-aos="flip-left" data-aos-delay="200" class="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover-lift"><img src="https://placehold.co/400x250/2d2d2d/lightgreen?text=Marketing+Campaign" alt="marketing" class="w-full"><div class="p-5"><h3 class="text-xl font-bold">Offline Promo Campaign</h3><p class="text-gray-400">Successfully increased local brand awareness by 40%.</p><button class="mt-4 text-green-400 bg-transparent">Case Study →</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION (Royal Blue) -->
+  <section id="experience" class="py-20 md:py-24 px-6 bg-blue-900 text-white">
+    <div class="max-w-5xl mx-auto"><h2 class="text-4xl font-bold text-center">Work <span class="text-cyan-300">Experience</span></h2><div class="w-24 h-1 bg-cyan-400 mx-auto mt-3 mb-12"></div>
+      <div class="space-y-6"><div data-aos="fade-right" class="bg-blue-800/40 p-6 rounded-2xl backdrop-blur-sm"><h3 class="text-2xl font-bold">Marketing Executive</h3><p class="text-cyan-200">1 Year • Local Brand Management</p><ul class="list-disc list-inside mt-2 space-y-1"><li>Offline marketing campaigns & lead generation</li><li>Social media strategy assistance</li></ul></div>
+      <div data-aos="fade-left" class="bg-blue-800/40 p-6 rounded-2xl backdrop-blur-sm"><h3 class="text-2xl font-bold">Office Application & Programming Teacher</h3><p class="text-cyan-200">3 Years • Computer Training Center</p><ul class="list-disc list-inside mt-2 space-y-1"><li>MS Office & basic programming mentor for 50+ adults</li></ul></div>
+      <div data-aos="fade-up" class="bg-blue-800/40 p-6 rounded-2xl backdrop-blur-sm"><h3 class="text-2xl font-bold">Mathematics & English Teacher</h3><p class="text-cyan-200">4 Years • Home & Institute Tutoring</p><ul class="list-disc list-inside mt-2 space-y-1"><li>Designed lesson plans, improved student grades by average 25%</li></ul></div>
+    </div></div>
+  </section>
+
+  <!-- VALUES + CERTIFICATIONS combined -->
+  <section id="certifications" class="py-20 md:py-24 px-6 bg-indigo-50">
+    <div class="max-w-7xl mx-auto"><h2 class="text-4xl font-bold text-center">My Core <span class="text-indigo-700">Values</span> & Certifications</h2><div class="w-24 h-1 bg-indigo-500 mx-auto mt-3 mb-12"></div>
+      <div class="grid md:grid-cols-2 gap-12"><div class="grid grid-cols-2 gap-5" data-aos="fade-right"><div class="bg-white p-5 rounded-2xl shadow-md text-center hover-lift"><i class="fas fa-hand-peace text-4xl text-indigo-600"></i><p class="font-bold mt-2">Honesty</p></div><div class="bg-white p-5 rounded-2xl shadow-md text-center hover-lift"><i class="fas fa-clock text-4xl text-indigo-600"></i><p class="font-bold mt-2">Discipline</p></div><div class="bg-white p-5 rounded-2xl shadow-md text-center hover-lift"><i class="fas fa-paintbrush text-4xl text-indigo-600"></i><p class="font-bold mt-2">Creativity</p></div><div class="bg-white p-5 rounded-2xl shadow-md text-center hover-lift"><i class="fas fa-chart-line text-4xl text-indigo-600"></i><p class="font-bold mt-2">Leadership</p></div></div>
+      <div data-aos="fade-left" class="space-y-4"><div class="bg-white p-5 rounded-xl shadow flex gap-4 items-center hover-lift"><i class="fas fa-certificate text-3xl text-indigo-600"></i><div><h4 class="font-bold text-lg">ICT & Teaching Certificate</h4><p class="text-gray-600">Digital Literacy & Pedagogy (2024)</p></div></div><div class="bg-white p-5 rounded-xl shadow flex gap-4 items-center hover-lift"><i class="fas fa-award text-3xl text-indigo-600"></i><div><h4 class="font-bold text-lg">Marketing Essentials</h4><p class="text-gray-600">Google Digital Garage Certified</p></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION with updated WhatsApp & Facebook -->
+  <section id="contact" class="py-20 md:py-24 px-6 bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12"><div data-aos="fade-right"><h2 class="text-4xl font-bold">Let's Connect</h2><div class="w-20 h-1 bg-cyan-400 mt-3 mb-8"></div><div class="space-y-5"><div class="flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-cyan-400"></i><span>Chandpur, Bangladesh</span></div><div class="flex items-center gap-4"><i class="fas fa-envelope text-2xl text-cyan-400"></i><span>sazzad.math@edu.com</span></div><div class="flex items-center gap-4"><i class="fab fa-whatsapp text-2xl text-green-400"></i><span>01632791981</span></div><div class="flex gap-6 mt-8 text-3xl"><a href="https://www.facebook.com/LBS.Sazzad" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-facebook"></i></a><a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin"></i></a><a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-twitter"></i></a></div></div></div>
+      <div data-aos="fade-left" class="bg-white/5 p-8 rounded-3xl backdrop-blur-sm"><h3 class="text-2xl font-bold mb-5">Send Message</h3><form id="contactForm"><div class="mb-4"><input type="text" placeholder="Your Name" class="w-full p-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none text-white"></div><div class="mb-4"><input type="email" placeholder="Email Address" class="w-full p-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none text-white"></div><div class="mb-4"><textarea rows="4" placeholder="Your Message" class="w-full p-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none text-white"></textarea></div><button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 rounded-full font-semibold w-full transition hover:scale-105">Send Message <i class="fas fa-paper-plane"></i></button></form><p id="formStatus" class="text-green-400 mt-3 text-center"></p></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black py-8 text-center text-gray-400"><div class="max-w-5xl mx-auto px-4"><p>© 2026 MD Sazzad Hossain — All Rights Reserved. ✨ Mathematics | Marketing | Teaching</p><div class="flex justify-center gap-6 mt-4 text-xl"><a href="https://www.facebook.com/LBS.Sazzad" target="_blank" class="hover:text-white transition"><i class="fab fa-facebook"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-github"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a></div></div></footer>
+
+  <!-- Floating WhatsApp Button - Perfectly Round Fix -->
+  <a href="https://wa.me/8801632791981" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: false, mirror: false });
+
+    // Typing animation
+    const roles = ["Mathematics Student", "Marketing Specialist", "Teacher", "Creative Thinker"];
+    let idx = 0, charIdx = 0, isDeleting = false;
+    const typingSpan = document.getElementById("typing-text");
+    function typeEffect() {
+      const current = roles[idx];
+      typingSpan.innerText = isDeleting ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
+      if (!isDeleting && charIdx === current.length+1) isDeleting = true;
+      else if (isDeleting && charIdx === 0) { isDeleting = false; idx = (idx+1)%roles.length; }
+      setTimeout(typeEffect, isDeleting ? 70 : 120);
+    }
+    typeEffect();
+
+    // Scroll progress bar
+    window.addEventListener("scroll", () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollProgress").style.width = scrolled + "%";
+    });
+
+    // Animated counters and skill percentages
+    const counters = document.querySelectorAll(".counter");
+    const skillBars = document.querySelectorAll(".progress-bar-fill");
+    let counted = false, skillsAnimated = false;
+    
+    function animateCounters() {
+      counters.forEach(c => { const target = +c.dataset.target; let current = 0; const upd = setInterval(() => { if(current>=target){clearInterval(upd)} else { current++; c.innerText = current; } }, 25); });
+    }
+    
+    function animateSkills() {
+      skillBars.forEach((bar, i) => { 
+        let target = bar.dataset.skill; 
+        let parentDiv = bar.closest('div')?.previousElementSibling;
+        let percentSpan = parentDiv ? parentDiv.querySelector('.skill-percent') : null;
+        let width = 0; 
+        let inter = setInterval(()=>{
+          if(width>=target){clearInterval(inter)} 
+          else{width++; bar.style.width=width+"%"; if(percentSpan)percentSpan.innerText=width+"%";}
+        }, 15);
+      });
+    }
+    
+    const observer = new IntersectionObserver((entries) => { 
+      entries.forEach(entry => { 
+        if(entry.isIntersecting && !counted && entry.target.id==="about"){ animateCounters(); counted=true; } 
+        if(entry.isIntersecting && !skillsAnimated && entry.target.id==="skills"){ animateSkills(); skillsAnimated=true; } 
+      }); 
+    }, { threshold:0.4 });
+    
+    if(document.getElementById("about")) observer.observe(document.getElementById("about"));
+    if(document.getElementById("skills")) observer.observe(document.getElementById("skills"));
+
+    // Contact form handler
+    document.getElementById("contactForm")?.addEventListener("submit", function(e){ e.preventDefault(); document.getElementById("formStatus").innerHTML = "✅ Message sent! Thanks, I'll reach out soon."; this.reset(); });
+  </script>
+</body>
+</html>
